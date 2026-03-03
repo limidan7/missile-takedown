@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 var current_lane = 0
 var lane_position = [60, 180,300]
@@ -17,3 +17,6 @@ func _physics_process(delta: float) -> void:
 	
 	
 	position.x = lane_position[current_lane]
+	
+	
+	

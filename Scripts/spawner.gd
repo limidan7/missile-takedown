@@ -1,10 +1,10 @@
 extends Node2D
 
 @onready var timer = $Timer
-var missile = preload("res://Scripts/missile.gd")
+var missile = preload("res://Scenes/missile.tscn")
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	timer.wait_time = 1
+func _ready() -> void:#start the timer to spawn the missiles
+	timer.wait_time = 3
 	timer.start
 	timer.timeout.connect(spawner)
 	timer.start()
@@ -13,5 +13,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 func spawner():
-	var missile_instantiate = missile.instantiate
+	#spawn the missiles
+	var missile_instantiate = missile.instantiate()
 	add_child(missile_instantiate)
