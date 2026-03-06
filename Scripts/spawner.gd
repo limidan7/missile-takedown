@@ -11,8 +11,12 @@ func _ready() -> void:#start the timer to spawn the missiles
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if timer.wait_time < 0.5:
+		timer.wait_time = 0.5
 	pass
 func spawner():
 	#spawn the missiles
 	var missile_instantiate = missile.instantiate()
 	add_child(missile_instantiate)
+	timer.wait_time *= 0.7
+	print(timer.wait_time)
