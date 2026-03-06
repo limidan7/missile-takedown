@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+
+
 var cooldown: bool = false
 var move_changes = 0
 @onready var timer = $Timer
@@ -11,6 +13,7 @@ var bullet_scene = preload("res://Scenes/bullet.tscn")
 func _ready() -> void:
 	timer.wait_time = 0.5
 	timer.start()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,9 +29,10 @@ func _physics_process(delta: float) -> void:
 	
 	
 func shoot():
-	if cooldown == false:
-		if Input.is_action_just_pressed("Shoot"):
-			spawn_bullets()
+	if Autoload.bullet_count > 0:
+		if cooldown == false:
+			if Input.is_action_just_pressed("Shoot"):
+				spawn_bullets()
 	
 	
 func spawn_bullets():

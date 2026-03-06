@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_55wbx"]
 [ext_resource type="Texture2D" uid="uid://dw0qt5j1d5l6y" path="res://Sprites/Bullet.png" id="2_5mkkp"]
-[ext_resource type="Script" path="res://Scripts/Missile Area.gd" id="2_qtnl7"]
+[ext_resource type="Script" path="res://Scripts/Enemy Area.gd" id="2_qtnl7"]
 [ext_resource type="Texture2D" uid="uid://bb4aru3c1njb2" path="res://Sprites/Bullet-sheet.png" id="3_cdfu3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s665d"]
@@ -144,5 +144,8 @@ position = Vector2(-1.90735e-06, -2)
 scale = Vector2(2.27812, 2.77706)
 sprite_frames = SubResource("SpriteFrames_m4nv7")
 animation = &"Explode"
+
+[node name="AmmoTimer" type="Timer" parent="."]
+wait_time = 2.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

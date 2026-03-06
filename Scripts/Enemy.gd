@@ -1,9 +1,10 @@
 class_name Enemy extends Node2D
-const movespeed = 30
+const movespeed = 40
 var rand_num = randi_range(0,2)
+var is_ammo_zombie : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimatedSprite2D.play("Walk")
+	$Sprite.play("Walk")
 	
 	position.y = -20
 	if rand_num == 0: 
@@ -12,7 +13,16 @@ func _ready() -> void:
 		position.x = 180
 	else:
 		position.x = 300
-	
+		
+	var ammo = randi_range(1,20)
+	if ammo > 19:
+		$Sprite.play("walk")
+		$Sprite.modulate.a =0.5
+		is_ammo_zombie = true
+	else:
+		is_ammo_zombie = false
+		$Sprite.modulate.a = 1
+		print(ammo)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +33,7 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	
-	if body is Player or body is Bullet:
+	if body is Bullet:
 		queue_free()
 	
 
@@ -33,7 +43,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	if area is Bullet_area:
 		Autoload.Score +=1
-		
-		queue_free()
-		
+		if is_ammo_zombie == true:
+			Autoload.bullet_count += 5
+			queue_free()
+		else:
+			queue_free()
 		

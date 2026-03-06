@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv7n4hqv0gqm5"]
+
+[ext_resource type="FontFile" uid="uid://fdfkxnv6u8a7" path="res://Sprites/Early GameBoy.ttf" id="1_fvxtt"]
+[ext_resource type="PackedScene" uid="uid://b2kkcv4tmr6gw" path="res://Scenes/player.tscn" id="1_gyu2t"]
+[ext_resource type="Script" path="res://Scenes/label.gd" id="2_2ed10"]
+[ext_resource type="PackedScene" uid="uid://btvophn0lk6f7" path="res://Scenes/border.tscn" id="2_n78mb"]
+[ext_resource type="PackedScene" uid="uid://bh5s7mmvoulyu" path="res://Scenes/missile.tscn" id="3_3yj0d"]
+[ext_resource type="PackedScene" uid="uid://cut5o4f68k2ra" path="res://Scenes/spawner.tscn" id="4_lf882"]
+[ext_resource type="Script" path="res://Scenes/Bullet count.gd" id="7_e5qw7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a47b8"]
+font = ExtResource("1_fvxtt")
+
+[node name="Root" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+z_index = 7
+offset_right = 358.0
+offset_bottom = 261.0
+text = "Score"
+label_settings = SubResource("LabelSettings_a47b8")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_2ed10")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -3
+offset_left = -250.0
+offset_top = -309.0
+offset_right = 795.0
+offset_bottom = 1188.0
+color = Color(0.0971303, 0.50947, 0.387802, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_gyu2t")]
+position = Vector2(35, 594)
+
+[node name="Border" parent="." instance=ExtResource("2_n78mb")]
+position = Vector2(0, 651)
+
+[node name="Missile" parent="." instance=ExtResource("3_3yj0d")]
+position = Vector2(0, -50)
+
+[node name="Spawner" parent="." instance=ExtResource("4_lf882")]
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 279.0
+offset_top = 359.0
+offset_right = 361.0
+offset_bottom = 535.0
+script = ExtResource("7_e5qw7")
