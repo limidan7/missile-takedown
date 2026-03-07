@@ -1,9 +1,12 @@
 class_name Enemy extends Node2D
-const movespeed = 40
+const movespeed = 80
 var rand_num = randi_range(0,2)
 var is_ammo_zombie : bool = false
+var can_move:bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Autoload.game_over.connect(game_over_movement)
+	
 	$Sprite.play("Walk")
 	
 	position.y = -20
@@ -27,8 +30,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
-	position.y += movespeed*delta
+	if can_move == true:
+		position.y += movespeed*delta
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -49,3 +52,6 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 		else:
 			queue_free()
 		
+func game_over_movement():
+	can_move = false
+	$Sprite.stop()

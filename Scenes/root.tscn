@@ -2,8 +2,8 @@
 
 [ext_resource type="FontFile" uid="uid://fdfkxnv6u8a7" path="res://Sprites/Early GameBoy.ttf" id="1_fvxtt"]
 [ext_resource type="PackedScene" uid="uid://b2kkcv4tmr6gw" path="res://Scenes/player.tscn" id="1_gyu2t"]
+[ext_resource type="Script" path="res://Scenes/root.gd" id="1_w17qm"]
 [ext_resource type="Script" path="res://Scripts/label.gd" id="2_2ed10"]
-[ext_resource type="PackedScene" uid="uid://btvophn0lk6f7" path="res://Scenes/border.tscn" id="2_n78mb"]
 [ext_resource type="PackedScene" uid="uid://bh5s7mmvoulyu" path="res://Scenes/missile.tscn" id="3_3yj0d"]
 [ext_resource type="PackedScene" uid="uid://cut5o4f68k2ra" path="res://Scenes/spawner.tscn" id="4_lf882"]
 [ext_resource type="Script" path="res://Scripts/Bullet count.gd" id="7_e5qw7"]
@@ -23,6 +23,7 @@ size = Vector2(383, 72)
 font = ExtResource("1_fvxtt")
 
 [node name="Root" type="Node2D"]
+script = ExtResource("1_w17qm")
 
 [node name="Score" type="Label" parent="."]
 z_index = 7
@@ -44,9 +45,6 @@ color = Color(0.0971303, 0.50947, 0.387802, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_gyu2t")]
 position = Vector2(35, 594)
-
-[node name="Border" parent="." instance=ExtResource("2_n78mb")]
-position = Vector2(0, 655)
 
 [node name="Missile" parent="." instance=ExtResource("3_3yj0d")]
 position = Vector2(0, -50)
@@ -71,7 +69,7 @@ script = ExtResource("7_e5qw7")
 script = ExtResource("8_13m6m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
-position = Vector2(185, 606)
+position = Vector2(185, 661)
 shape = SubResource("RectangleShape2D_2rdm1")
 
 [node name="PlayerHealth" type="Label" parent="."]
