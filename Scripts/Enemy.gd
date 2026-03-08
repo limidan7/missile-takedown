@@ -1,7 +1,9 @@
-class_name Enemy extends Node2D
+class_name Enemy extends CharacterBody2D
 const movespeed = 80
+var tank_zombie_health:int = 2
 var rand_num = randi_range(0,2)
 var is_ammo_zombie : bool = false
+var is_tank_zombie: bool = false
 var can_move:bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,15 +19,20 @@ func _ready() -> void:
 	else:
 		position.x = 300
 		
-	var ammo = randi_range(1,20)
-	if ammo > 19:
+	var zombie_select = randi_range(1,100)
+	if zombie_select > 80:
 		$Sprite.play("walk")
 		$Sprite.modulate.a =0.5
 		is_ammo_zombie = true
+	elif zombie_select > 70 and zombie_select < 80:
+		$Sprite.scale *= 1.5
+		$Sprite.play("walk")
+		is_tank_zombie = true
 	else:
 		is_ammo_zombie = false
+		is_tank_zombie = false
 		$Sprite.modulate.a = 1
-		print(ammo)
+		print(zombie_select)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,3 +62,12 @@ func _on_area_2d_area_shape_entered(area_rid: RID, area: Area2D, area_shape_inde
 func game_over_movement():
 	can_move = false
 	$Sprite.stop()
+	
+
+
+func _on_detector_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	if area is detection:
+		if is_tank_zombie == true:
+			Autoload.player_health -= 2
+		else:
+			Autoload.player_health -= 1

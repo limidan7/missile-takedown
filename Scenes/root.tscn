@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cv7n4hqv0gqm5"]
+[gd_scene load_steps=27 format=3 uid="uid://cv7n4hqv0gqm5"]
 
 [ext_resource type="FontFile" uid="uid://fdfkxnv6u8a7" path="res://Sprites/Early GameBoy.ttf" id="1_fvxtt"]
 [ext_resource type="PackedScene" uid="uid://b2kkcv4tmr6gw" path="res://Scenes/player.tscn" id="1_gyu2t"]
@@ -6,15 +6,13 @@
 [ext_resource type="Script" path="res://Scripts/label.gd" id="2_2ed10"]
 [ext_resource type="PackedScene" uid="uid://bh5s7mmvoulyu" path="res://Scenes/missile.tscn" id="3_3yj0d"]
 [ext_resource type="PackedScene" uid="uid://cut5o4f68k2ra" path="res://Scenes/spawner.tscn" id="4_lf882"]
+[ext_resource type="Script" path="res://Scenes/health_image.gd" id="6_gvrpk"]
 [ext_resource type="Script" path="res://Scripts/Bullet count.gd" id="7_e5qw7"]
 [ext_resource type="Script" path="res://Scripts/detection.gd" id="8_13m6m"]
+[ext_resource type="Texture2D" uid="uid://dy7egtmj3a3vu" path="res://Sprites/Ui_heart_breaking1-sheet.png" id="8_mhs6y"]
 [ext_resource type="Script" path="res://Scripts/player_health.gd" id="9_6yu0r"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_a47b8"]
-font = ExtResource("1_fvxtt")
-
-[sub_resource type="LabelSettings" id="LabelSettings_qe7fr"]
-font = ExtResource("1_fvxtt")
+[ext_resource type="Texture2D" uid="uid://c6i5pltmgcfly" path="res://Sprites/Ui_Heart.png" id="10_mfqjc"]
+[ext_resource type="Texture2D" uid="uid://b2fo88cj7u3f4" path="res://Sprites/Ui_BUllet.png" id="10_mv4us"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rdm1"]
 size = Vector2(383, 72)
@@ -22,25 +20,93 @@ size = Vector2(383, 72)
 [sub_resource type="LabelSettings" id="LabelSettings_clwqr"]
 font = ExtResource("1_fvxtt")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6qt6"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt3vp"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(18, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv42x"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(36, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_is3gt"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(54, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkkct"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(72, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qah7h"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(90, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yk1n"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(108, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upeo6"]
+atlas = ExtResource("8_mhs6y")
+region = Rect2(126, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r7fkt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6qt6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt3vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv42x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_is3gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bkkct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qah7h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yk1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upeo6")
+}],
+"loop": false,
+"name": &"Briste",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_mfqjc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qe7fr"]
+font = ExtResource("1_fvxtt")
+
+[sub_resource type="LabelSettings" id="LabelSettings_a47b8"]
+font = ExtResource("1_fvxtt")
+
 [node name="Root" type="Node2D"]
 script = ExtResource("1_w17qm")
 
-[node name="Score" type="Label" parent="."]
-z_index = 7
-offset_right = 358.0
-offset_bottom = 261.0
-text = "Score"
-label_settings = SubResource("LabelSettings_a47b8")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("2_2ed10")
-
 [node name="Background" type="ColorRect" parent="."]
 z_index = -3
-offset_left = -250.0
-offset_top = -309.0
-offset_right = 795.0
-offset_bottom = 1188.0
+offset_left = -240.0
+offset_top = -262.0
+offset_right = 805.0
+offset_bottom = 1235.0
 color = Color(0.0971303, 0.50947, 0.387802, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_gyu2t")]
@@ -51,12 +117,61 @@ position = Vector2(0, -50)
 
 [node name="Spawner" parent="." instance=ExtResource("4_lf882")]
 
-[node name="Bullet_count label" type="Label" parent="."]
+[node name="Detection" type="Area2D" parent="."]
+script = ExtResource("8_13m6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2(185, 661)
+shape = SubResource("RectangleShape2D_2rdm1")
+
+[node name="Ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health image" type="TextureRect" parent="Ui"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 469.0
+offset_right = 219.0
+offset_bottom = 509.0
+scale = Vector2(1.36, 1.36)
+script = ExtResource("6_gvrpk")
+
+[node name="PlayerHealth" type="Label" parent="Ui/Health image"]
+layout_mode = 0
+offset_left = -127.941
+offset_top = 16.1765
+offset_right = 237.059
+offset_bottom = 52.1765
+scale = Vector2(0.705882, 0.648649)
+text = "Player Health"
+label_settings = SubResource("LabelSettings_clwqr")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("9_6yu0r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Ui/Health image"]
+sprite_frames = SubResource("SpriteFrames_r7fkt")
+
+[node name="Ammo" type="TextureRect" parent="Ui"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 34.0
+offset_bottom = 35.0
+texture = ExtResource("10_mv4us")
+
+[node name="Bullet_count label" type="Label" parent="Ui/Ammo"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_right = 362.0
-offset_bottom = 23.0
+offset_left = 2.0
+offset_top = 6.0
+offset_right = 109.0
+offset_bottom = 29.0
 grow_horizontal = 2
 size_flags_vertical = 0
 text = "Ammo"
@@ -65,22 +180,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_e5qw7")
 
-[node name="Detection" type="Area2D" parent="."]
-script = ExtResource("8_13m6m")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
-position = Vector2(185, 661)
-shape = SubResource("RectangleShape2D_2rdm1")
-
-[node name="PlayerHealth" type="Label" parent="."]
-offset_left = -2.0
-offset_top = 584.0
-offset_right = 363.0
-offset_bottom = 620.0
-text = "Player Health"
-label_settings = SubResource("LabelSettings_clwqr")
+[node name="Score" type="Label" parent="Ui"]
+z_index = 7
+layout_mode = 0
+offset_left = 250.0
+offset_top = -40.0
+offset_right = 381.0
+offset_bottom = 75.0
+scale = Vector2(1, 1.04)
+text = "Score"
+label_settings = SubResource("LabelSettings_a47b8")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("9_6yu0r")
+script = ExtResource("2_2ed10")
 
-[connection signal="area_entered" from="Detection" to="Detection" method="_on_area_entered"]
+[connection signal="body_entered" from="Detection" to="Detection" method="_on_body_entered"]

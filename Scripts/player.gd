@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D
 
 
-
+var can_move:bool = true
 var cooldown: bool = false
 var move_changes = 0
 @onready var timer = $Timer
@@ -13,19 +13,20 @@ var bullet_scene = preload("res://Scenes/bullet.tscn")
 func _ready() -> void:
 	timer.wait_time = 0.5
 	timer.start()
+	Autoload.game_over.connect(haltmovement)
 	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	
-	if Input.is_action_just_pressed("Right_Move") and current_lane < 2:
-		current_lane += 1
-	if Input.is_action_just_pressed("Left_Move") and current_lane >0:
-		current_lane -= 1
-	
-	shoot()
-	position.x = lane_position[current_lane]
+	if can_move == true:
+		if Input.is_action_just_pressed("Right_Move") and current_lane < 2:
+			current_lane += 1
+		if Input.is_action_just_pressed("Left_Move") and current_lane >0:
+			current_lane -= 1
+		
+		shoot()
+		position.x = lane_position[current_lane]
 	
 	
 func shoot():
@@ -47,3 +48,6 @@ func spawn_bullets():
 
 func _on_timer_timeout() -> void:
 	cooldown = false
+
+func haltmovement():
+	can_move = false

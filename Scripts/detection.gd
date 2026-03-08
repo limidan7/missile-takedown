@@ -1,7 +1,13 @@
-extends Area2D
+class_name detection extends Area2D
 
 
-func _on_area_entered(area: Area2D) -> void:
-	if area is Enemy_area:
-		Autoload.player_health -= 1
+	
 		
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body == Enemy:
+		if body.is_tank_zombie:
+			Autoload.player_health -= 2
+		else:
+			Autoload.player_health -= 1
