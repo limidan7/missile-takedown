@@ -1,5 +1,5 @@
 class_name Enemy extends CharacterBody2D
-const movespeed = 80
+const movespeed = 100
 var tank_zombie_health:int = 2
 var rand_num = randi_range(0,2)
 var is_ammo_zombie : bool = false
