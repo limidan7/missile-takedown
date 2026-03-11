@@ -42,13 +42,16 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				body.tank_zombie_health -= 1
 				enemydied = true
 				if body.tank_zombie_health == 0:
+					Autoload.Score += 1
 					body.queue_free()
 					enemydied = true
 			elif body.is_ammo_zombie == true:
 					Autoload.bullet_count += 5
+					Autoload.Score += 1
 					body.queue_free()
 					enemydied=true
 			else:
+				Autoload.Score += 1
 				body.queue_free()
 				enemydied=true
 				
