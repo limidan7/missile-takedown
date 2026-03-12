@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cv7n4hqv0gqm5"]
+[gd_scene load_steps=32 format=3 uid="uid://cv7n4hqv0gqm5"]
 
 [ext_resource type="FontFile" uid="uid://fdfkxnv6u8a7" path="res://Sprites/Early GameBoy.ttf" id="1_fvxtt"]
 [ext_resource type="PackedScene" uid="uid://b2kkcv4tmr6gw" path="res://Scenes/player.tscn" id="1_gyu2t"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Control Script/player_health.gd" id="9_6yu0r"]
 [ext_resource type="Texture2D" uid="uid://c6i5pltmgcfly" path="res://Sprites/Ui_Heart.png" id="10_mfqjc"]
 [ext_resource type="Texture2D" uid="uid://b2fo88cj7u3f4" path="res://Sprites/Ui_BUllet.png" id="10_mv4us"]
+[ext_resource type="Texture2D" uid="uid://cjyb62n1ampvo" path="res://Sprites/Explosion.png" id="13_weya3"]
 [ext_resource type="Script" path="res://Scripts/Control Script/death_Tint.gd" id="14_igsxr"]
 [ext_resource type="Script" path="res://Scripts/Control Script/left_touch_zone.gd" id="15_7h71x"]
 [ext_resource type="Script" path="res://Scripts/Control Script/right_touch_zone.gd" id="16_2bvar"]
@@ -182,13 +183,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("7_e5qw7")
 
-[node name="Score" type="Label" parent="Ui"]
+[node name="TextEdit" type="TextureRect" parent="Ui"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 1.0
+offset_right = 259.0
+offset_bottom = 39.0
+texture = ExtResource("13_weya3")
+
+[node name="Score" type="Label" parent="Ui/TextEdit"]
 z_index = 7
 layout_mode = 0
-offset_left = 250.0
-offset_top = -40.0
-offset_right = 381.0
-offset_bottom = 75.0
+offset_left = 30.0
+offset_top = -36.0
+offset_right = 161.0
+offset_bottom = 79.0
 scale = Vector2(1, 1.04)
 text = "Score"
 label_settings = SubResource("LabelSettings_a47b8")
@@ -224,8 +233,10 @@ script = ExtResource("16_2bvar")
 [node name="MiddleTouchZone" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 142.0
+offset_top = 1.0
+offset_right = 212.0
+offset_bottom = 639.0
 script = ExtResource("17_w01lg")
 
 [connection signal="body_entered" from="Detection" to="Detection" method="_on_body_entered"]

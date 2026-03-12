@@ -1,21 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2kkcv4tmr6gw"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_nlpul"]
-[ext_resource type="Texture2D" uid="uid://bvjddypsgtnl3" path="res://Sprites/icon.svg" id="2_ch1u2"]
+[ext_resource type="Texture2D" uid="uid://bepo0fn8eud5d" path="res://Sprites/Player_Tank.png" id="2_qjgqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwdsb"]
-size = Vector2(70, 98)
+size = Vector2(70, 86)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_nlpul")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_kwdsb")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(3.8147e-06, 3.8147e-06)
-scale = Vector2(0.546875, 0.75)
-texture = ExtResource("2_ch1u2")
+position = Vector2(0, -1.78814e-07)
+scale = Vector2(3.09375, 3.27167)
+texture = ExtResource("2_qjgqx")
 
 [node name="Timer" type="Timer" parent="."]
 

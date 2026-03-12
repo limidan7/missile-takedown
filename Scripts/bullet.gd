@@ -2,8 +2,10 @@ class_name Bullet extends Node2D
 var movement_enabled : bool = true
 var bullet_movespeed = -200
 var enemydied = false
+var t = create_tween()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	z_index = -2
 	position.y = 596
 	$Area2D/Sprite2D.play("idle")
 	$Area2D.monitoring = true
@@ -15,13 +17,6 @@ func _process(delta: float) -> void:
 		position.y += bullet_movespeed*delta
 		
 	bullet_increase()
-
-
-
-
-
-
-
 
 
 func bullet_increase():
@@ -36,21 +31,25 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			movement_enabled = false
 			$Area2D.set_deferred("monitoring", false)
 			enemydied = false # checks if the body is an enemy i.e Zombie
-			
 			# checks the zombie type and reacts accordingly
 			if body.is_tank_zombie == true:
 				body.tank_zombie_health -= 1
 				enemydied = true
+				await body.flash()
 				if body.tank_zombie_health == 0:
 					Autoload.Score += 1
+					await body.flash()
 					body.queue_free()
 					enemydied = true
+					
 			elif body.is_ammo_zombie == true:
 					Autoload.bullet_count += 5
 					Autoload.Score += 1
+					await body.flash()
 					body.queue_free()
 					enemydied=true
 			else:
+				await body.flash()
 				Autoload.Score += 1
 				body.queue_free()
 				enemydied=true
@@ -61,3 +60,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			movement_enabled = true
 			print(Autoload.Score)
 			queue_free()
+			
+		

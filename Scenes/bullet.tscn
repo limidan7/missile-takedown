@@ -118,7 +118,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Explode",
-"speed": 20.0
+"speed": 50.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -130,6 +130,7 @@ animations = [{
 }]
 
 [node name="Bullet" type="Node2D"]
+scale = Vector2(0.640002, 0.666168)
 script = ExtResource("1_55wbx")
 
 [node name="Area2D" type="Area2D" parent="."]

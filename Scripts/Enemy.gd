@@ -71,3 +71,8 @@ func _on_detector_area_shape_entered(area_rid: RID, area: Area2D, area_shape_ind
 			Autoload.player_health -= 2
 		else:
 			Autoload.player_health -= 1
+
+func flash():
+	$Sprite.modulate = Color(3, 3, 3) 
+	await get_tree().create_timer(0.08).timeout
+	$Sprite.modulate = Color(1, 1, 1) 
