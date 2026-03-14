@@ -19,7 +19,7 @@ func spawner():
 	if can_spawn == true:#spawn the missiles
 		var missile_instantiate = missile.instantiate()
 		add_child(missile_instantiate)
-		timer.wait_time *= 0.99
+		timer.wait_time *= 0.9
 	
 func spawner_toggle():
 	can_spawn = false

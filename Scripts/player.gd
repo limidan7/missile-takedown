@@ -7,7 +7,7 @@ var move_changes = 0
 @onready var timer = $Timer
 var position_changed = false
 var current_lane = 0
-var lane_position = [60, 180,300]
+var lane_position = [36,107.5,180,252.5,300]
 var bullet_scene = preload("res://Scenes/bullet.tscn")
 @onready var lefttouch = $"../CanvasLayer/LeftTouchZone"
 @onready var righttouch = $"../CanvasLayer/RightTouchZone"
@@ -23,7 +23,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	if can_move == true:
-		if (Input.is_action_just_pressed("Right_Move") or righttouch.pressed) and current_lane < 2:
+		if (Input.is_action_just_pressed("Right_Move") or righttouch.pressed) and current_lane < 4:
 			current_lane += 1
 			righttouch.pressed = false
 		if (Input.is_action_just_pressed("Left_Move") or lefttouch.pressed) and current_lane >0:
